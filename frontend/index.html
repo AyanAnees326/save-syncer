@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Save Syncer</title>
+    <script>
+      // Applied before paint, synchronously, so switching themes never flashes the
+      // previous one - ThemeProvider takes over from here once React mounts.
+      (function () {
+        try {
+          var stored = JSON.parse(localStorage.getItem("savesync-theme") || "{}");
+          var mode = stored.mode || "dark";
+          var accent = stored.accent || "indigo";
+          var dark =
+            mode === "dark" ||
+            (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          var root = document.documentElement;
+          if (dark) root.classList.add("dark");
+          root.setAttribute("data-accent", accent);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

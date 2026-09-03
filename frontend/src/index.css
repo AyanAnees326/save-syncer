@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: toggled by ThemeProvider adding/removing `.dark` on <html>,
+   rather than following the OS unconditionally - the app has its own Light/Dark/System
+   setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+/* Scrollbars that do not fight the surface color in either theme. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-300) transparent;
+}
+.dark * {
+  scrollbar-color: var(--color-slate-700) transparent;
+}
+
+/*
+ * Accent presets. Each is a self-contained set of custom properties covering solid
+ * (buttons), soft (selected rows, links, badges) and ring (focus/selection border)
+ * uses, with a light and a dark value for each - so switching themes never has to
+ * touch this block, only [data-accent] does.
+ *
+ * accent-text is the color placed on top of the solid accent (buttons): white in
+ * every preset here because all six are saturated enough at the shade used for solid
+ * fills to keep white legible in both themes.
+ */
+:root,
+[data-accent="indigo"] {
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(79 70 229 / 8%);
+  --accent-soft-text: #4338ca;
+  --accent-ring: rgb(79 70 229 / 35%);
+}
+.dark[data-accent="indigo"] {
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-soft-bg: rgb(99 102 241 / 15%);
+  --accent-soft-text: #a5b4fc;
+  --accent-ring: rgb(129 140 248 / 40%);
+}
+
+[data-accent="violet"] {
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(124 58 237 / 8%);
+  --accent-soft-text: #6d28d9;
+  --accent-ring: rgb(124 58 237 / 35%);
+}
+.dark[data-accent="violet"] {
+  --accent: #a78bfa;
+  --accent-hover: #c4b5fd;
+  --accent-soft-bg: rgb(167 139 250 / 15%);
+  --accent-soft-text: #c4b5fd;
+  --accent-ring: rgb(196 181 253 / 40%);
+}
+
+[data-accent="sky"] {
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(2 132 199 / 8%);
+  --accent-soft-text: #0369a1;
+  --accent-ring: rgb(2 132 199 / 35%);
+}
+.dark[data-accent="sky"] {
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-soft-bg: rgb(56 189 248 / 15%);
+  --accent-soft-text: #7dd3fc;
+  --accent-ring: rgb(125 211 252 / 40%);
+}
+
+[data-accent="emerald"] {
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(5 150 105 / 8%);
+  --accent-soft-text: #047857;
+  --accent-ring: rgb(5 150 105 / 35%);
+}
+.dark[data-accent="emerald"] {
+  --accent: #34d399;
+  --accent-hover: #6ee7b7;
+  --accent-soft-bg: rgb(52 211 153 / 15%);
+  --accent-soft-text: #6ee7b7;
+  --accent-ring: rgb(110 231 183 / 40%);
+}
+
+[data-accent="rose"] {
+  --accent: #e11d48;
+  --accent-hover: #be123c;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(225 29 72 / 8%);
+  --accent-soft-text: #be123c;
+  --accent-ring: rgb(225 29 72 / 35%);
+}
+.dark[data-accent="rose"] {
+  --accent: #fb7185;
+  --accent-hover: #fda4af;
+  --accent-soft-bg: rgb(251 113 133 / 15%);
+  --accent-soft-text: #fda4af;
+  --accent-ring: rgb(253 164 175 / 40%);
+}
+
+[data-accent="amber"] {
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-text: #ffffff;
+  --accent-soft-bg: rgb(180 83 9 / 8%);
+  --accent-soft-text: #92400e;
+  --accent-ring: rgb(180 83 9 / 35%);
+}
+.dark[data-accent="amber"] {
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+  --accent-text: #1c1917;
+  --accent-soft-bg: rgb(251 191 36 / 15%);
+  --accent-soft-text: #fcd34d;
+  --accent-ring: rgb(252 211 77 / 40%);
+}
